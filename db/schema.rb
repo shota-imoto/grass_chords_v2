@@ -2,8 +2,8 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# This file is the source Rails uses to define your schema when running `rails
-# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
 # be faster and is potentially less error prone than running all of your
 # migrations from scratch. Old migrations may fail to apply correctly if those
 # migrations use external dependencies or application code.
@@ -12,7 +12,13 @@
 
 ActiveRecord::Schema.define(version: 2020_09_06_075344) do
 
-  create_table "chords", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "artists", charset: "utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "chords", charset: "utf8", force: :cascade do |t|
     t.bigint "song_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -25,7 +31,7 @@ ActiveRecord::Schema.define(version: 2020_09_06_075344) do
     t.index ["user_id"], name: "index_chords_on_user_id"
   end
 
-  create_table "chordunits", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "chordunits", charset: "utf8", force: :cascade do |t|
     t.integer "address", null: false
     t.text "text"
     t.string "leftbar"
@@ -40,7 +46,18 @@ ActiveRecord::Schema.define(version: 2020_09_06_075344) do
     t.index ["chord_id"], name: "index_chordunits_on_chord_id"
   end
 
-  create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "keys", charset: "utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.boolean "instrumental", null: false
+    t.boolean "male", null: false
+    t.boolean "female", null: false
+    t.bigint "song_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["song_id"], name: "index_keys_on_song_id"
+  end
+
+  create_table "likes", charset: "utf8", force: :cascade do |t|
     t.bigint "chord_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
@@ -49,7 +66,7 @@ ActiveRecord::Schema.define(version: 2020_09_06_075344) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
-  create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "messages", charset: "utf8", force: :cascade do |t|
     t.string "text", null: false
     t.bigint "to_user_id"
     t.bigint "from_user_id"
@@ -59,7 +76,7 @@ ActiveRecord::Schema.define(version: 2020_09_06_075344) do
     t.index ["to_user_id"], name: "index_messages_on_to_user_id"
   end
 
-  create_table "practice_songs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "practice_songs", charset: "utf8", force: :cascade do |t|
     t.bigint "song_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
@@ -68,7 +85,7 @@ ActiveRecord::Schema.define(version: 2020_09_06_075344) do
     t.index ["user_id"], name: "index_practice_songs_on_user_id"
   end
 
-  create_table "practices", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "practices", charset: "utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -79,7 +96,7 @@ ActiveRecord::Schema.define(version: 2020_09_06_075344) do
     t.index ["user_id"], name: "index_practices_on_user_id"
   end
 
-  create_table "songs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "songs", charset: "utf8", force: :cascade do |t|
     t.string "title", null: false
     t.boolean "jam", null: false
     t.boolean "standard", null: false
@@ -93,7 +110,7 @@ ActiveRecord::Schema.define(version: 2020_09_06_075344) do
     t.index ["user_id"], name: "index_songs_on_user_id"
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "users", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -112,6 +129,7 @@ ActiveRecord::Schema.define(version: 2020_09_06_075344) do
   add_foreign_key "chords", "songs"
   add_foreign_key "chords", "users"
   add_foreign_key "chordunits", "chords"
+  add_foreign_key "keys", "songs"
   add_foreign_key "likes", "chords"
   add_foreign_key "likes", "users"
   add_foreign_key "messages", "users", column: "from_user_id"

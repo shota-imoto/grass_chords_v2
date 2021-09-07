@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.7.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '6.0.3'
+gem 'rails', '~> 6.1.3.1'
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.4.4', '< 0.6.0'
 
@@ -35,7 +35,7 @@ group :development, :test do
   gem "pry-byebug"
   gem 'hirb'
   gem 'hirb-unicode'
-  gem 'rspec-rails', '~>3.6.0'
+  gem 'rspec-rails', '~>5.0.1'
   gem 'factory_bot_rails'
 end
 
