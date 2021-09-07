@@ -1,3 +1,8 @@
+# 当リポジトリについて
+
+サーバー費用を抑えた上で、運用するためにインフラ構成と機能の最適化を行う。
+機能の削除も含まれるため、grass_chords_v2としてミラーリポジトリを作成した。
+
 # アプリ概要
 
 [GrassChords](https://grasschords.com "GrassChords")<br>
