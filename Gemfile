@@ -6,12 +6,13 @@ ruby '2.7.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.1.3.1'
 # Use mysql as the database for Active Record
-gem 'mysql2', '>= 0.4.4', '< 0.6.0'
+gem 'mysql2', '>= 0.5.3', '< 0.6.0'
 
 # Use haml for view files
 gem 'haml-rails'
 # Use SCSS for stylesheets
 gem 'sassc-rails', '>=2.1.2'
+gem 'sassc', '>=2.4.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
